@@ -20,8 +20,10 @@ const NavHeader = () => {
               <li key={item.name} className="group relative cursor-pointer">
                 <span className="hover:text-blue-600">{item.name}</span>
 
-                {/* Dropdown Menu */}
-                <div className="absolute left-0 mt-2 hidden group-hover:block bg-white shadow-lg rounded-md py-2 w-40 z-50">
+                {/* Dropdown */}
+                <div
+                  className=" absolute left-0 top-full  hidden group-hover:block bg-white shadow-lg rounded-md py-2 w-40 z-50"
+                >
                   {item.dropdown.map((opt) => (
                     <Link
                       key={opt}

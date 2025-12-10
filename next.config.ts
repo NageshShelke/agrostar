@@ -3,8 +3,9 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "agrostar-api.onrender.com",
-        pathname: "/public/**",
+        hostname: "res.cloudinary.com",
+        port: "",
+        pathname: "/**",
       },
     ],
   },

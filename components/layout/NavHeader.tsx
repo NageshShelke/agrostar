@@ -12,7 +12,7 @@ const navitem = [
 const NavHeader = () => {
   return (
     <div>
-      <div className="hidden lg:flex items-center justify-start py-5 px-5 h-20 w-full">
+      <div className="hidden lg:flex items-center justify-start px-22 h-20 w-full">
         <ul className="flex gap-12 relative">
           {navitem.map((item) =>
             item.dropdown ? (

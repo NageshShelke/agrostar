@@ -2,19 +2,38 @@
 import Image from "next/image";
 import { fetchProductBySlug } from "@/utils/api";
 
-interface ProductPageProps {
-  params: {
-    slug: string;
-  };
+interface Product {
+  id: number;
+  name: string;
+  slug: string;
+  orignal_price: number;
+  discount_price: number;
+  image: string;
+  category: string;
+  brand: string;
+  ingredients: string;
+  discription: string;
+  is_sold_out?: boolean;
+  size?: string;
 }
 
-export default async function ProductPage({ params }: ProductPageProps) {
-  const product = await fetchProductBySlug(params.slug);
+export default async function ProductPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  // 1️⃣ Unwrap params (Next.js 16 App Router requirement)
+  const { slug } = await params;
 
+  // 2️⃣ Fetch the product using slug
+  const product: Product | null = await fetchProductBySlug(slug);
+
+  // 3️⃣ If product not found
   if (!product) {
     return <div className="text-center mt-10">Product not found</div>;
   }
 
+  // 4️⃣ Render product details
   return (
     <div className="max-w-6xl mx-auto mt-10 p-4">
       <div className="flex flex-col md:flex-row gap-10">
@@ -61,7 +80,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           {/* Description */}
           <div className="mt-6">
             <h2 className="font-bold text-xl mb-2">Description:</h2>
-            <p>{product.description}</p>
+            <p>{product.discription}</p>
           </div>
         </div>
       </div>

@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useState } from "react";
 import { Menu, X, Search, LogIn } from "lucide-react";
 import logo from '@/public/header_logo.png';
+import { IoCartOutline } from "react-icons/io5";
+
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -44,6 +46,7 @@ export default function Header() {
        
         {/* Language + Login - Standardized heights */}
         <div className="hidden lg:flex items-center gap-3">
+         <IoCartOutline className="text-3xl"/>
           <select id="language-select" className="hover:cursor-pointer border rounded px-2 py-1 text-xs bg-transparent">
             <option>Language</option>
             <option>English</option>
@@ -54,6 +57,7 @@ export default function Header() {
             <LogIn className="w-4 h-4" />
             <span className="text-sm">Login</span>
           </button>
+           
         </div>
 
         {/* Mobile Menu Button */}

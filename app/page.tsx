@@ -4,6 +4,7 @@ import Image from "next/image";
 import { ProductCategory, CategoryType } from "@/utils/ProductCategory";
 import ProductCard from "@/components/ProductCard";
 import { useProducts } from "@/features/products/useProducts";
+import { Fullscreen } from "lucide-react";
 
 export default function Home() {
   const { products, loading, error } = useProducts();
@@ -38,6 +39,29 @@ export default function Home() {
           products.map((product) => <ProductCard key={product.id} product={product} />)
         )}
       </div>
+
+      <div className="mt-10 w-full">
+        <Image
+          src="/Banners/freeshippingbannner.png"
+          width={2000}
+          height={100}
+          alt="Banner1"
+          className="w-full h-50 rounded-2xl object-fit"
+        />
+      </div>
+
+       {/* Products Section */}
+      <h3 className="mt-10 text-2xl font-bold">All Products</h3>
+      <div className="mt-5 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+        {loading ? (
+          <p className="text-center col-span-full">Loading products...</p>
+        ) : error ? (
+          <p className="text-center col-span-full text-red-500">{error}</p>
+        ) : (
+          products.map((product) => <ProductCard key={product.id} product={product} />)
+        )}
+      </div>
+
     </div>
   );
 }

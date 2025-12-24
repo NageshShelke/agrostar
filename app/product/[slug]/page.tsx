@@ -1,9 +1,11 @@
 // app/product/[slug]/page.tsx
 import Image from "next/image";
 import { fetchProductBySlug } from "@/utils/api";
+import { featchReleteedProducts } from "@/utils/api";
 import { FiHeart, FiMinus, FiPlus } from "react-icons/fi";
 import { FaStar, FaMapMarkerAlt, FaPhoneAlt, FaShippingFast, FaShieldAlt, FaCheckCircle, FaBoxOpen } from "react-icons/fa";
 import { IoMdCall } from "react-icons/io";
+import ProductCard from "@/components/ProductCard";
 interface Product {
   id: number;
   name: string;
@@ -19,7 +21,7 @@ interface Product {
   size?: string;
 }
 
-// HARDCODED DATA TO MATCH SCREENSHOT (Replace with real data later)
+
 const MOCK_DATA = {
 
   packSizes: ["25ml", "50ml", "100ml"],
@@ -44,12 +46,19 @@ export default async function ProductPage({
   const { slug } = await params;
   const product: Product | null = await fetchProductBySlug(slug);
 
+  console.log("slug:", slug);
+
   if (!product) {
     return <div className="text-center mt-10">Product not found</div>;
   }
 
-  // Calculate saved price based on API data
+  const res = await featchReleteedProducts(product.category);
+  const releted_products = res.filter((p: any) => p.id !== product.id);
+
+
+
   const savedPrice = product.orignal_price - product.discount_price;
+
 
   return (
     <>
@@ -124,8 +133,8 @@ export default async function ProductPage({
                     key={size}
                     // Styling the first one as active based on screenshot
                     className={`px-6 py-2 rounded border font-medium transition-colors ${index === 0
-                        ? "bg-[#E4B34A] text-white border-[#E4B34A]"
-                        : "bg-white text-gray-700 border-gray-300 hover:border-gray-400"
+                      ? "bg-[#E4B34A] text-white border-[#E4B34A]"
+                      : "bg-white text-gray-700 border-gray-300 hover:border-gray-400"
                       }`}
                   >
                     {size}
@@ -244,11 +253,19 @@ export default async function ProductPage({
 
       </div>
       <div className="bg-white p-6 rounded-b-xl border-t border-gray-200 mt-10">
-          <h2 className="text-md font-bold text-gray-900 ">Description:</h2>
-          <div className="text-gray-600  text-sm whitespace-pre-line text-justify mt-4">
-            {product.discription}
-          </div>
+        <h2 className="text-md font-bold text-gray-900 ">Description:</h2>
+        <div className="text-gray-600  text-sm whitespace-pre-line text-justify mt-4">
+          {product.discription}
         </div>
+      </div>
+
+      <h3 className="mt-10 text-2xl font-bold">Related Products</h3>
+      <div className="mt-5 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+        { 
+        releted_products.length === 0 ? 
+        <div className="text-center mt-10">No related products found</div> 
+        : releted_products.map((product) => <ProductCard key={product.id} product={product} />)  }
+      </div>
     </>
   );
 }

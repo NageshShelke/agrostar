@@ -24,6 +24,30 @@ export const fetchProducts = async () => {
   }
 };
 
+export const featchReleteedProducts = async (category: string) => {
+ const res = await fetchProducts()
+  const relatedProducts = res.filter((product: any) => product.category === category);
+  return relatedProducts
+}
+
+export async function getProductsByCategory(slug: string) {
+  try {
+    const products =  await fetchProducts();
+
+    // Convert category into URL-friendly format (slug)
+    const filtered = products.filter((product: any) => {
+      const productSlug = product.category.toLowerCase().replace(/\s+/g, "-");
+      return productSlug === slug;
+    });
+
+    return filtered;
+  } catch (error) {
+    console.error("Error fetching category products:", error);
+    return [];
+  }
+}
+
+
 
 
 

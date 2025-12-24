@@ -5,9 +5,13 @@ import { ProductCategory, CategoryType } from "@/utils/ProductCategory";
 import ProductCard from "@/components/ProductCard";
 import { useProducts } from "@/features/products/useProducts";
 import { Fullscreen } from "lucide-react";
+import Link from "next/link";
+
+
 
 export default function Home() {
   const { products, loading, error } = useProducts();
+  
 
   return (
     <div className="mt-10">
@@ -21,10 +25,12 @@ export default function Home() {
       <h3 className="text-center mt-10 text-2xl font-bold">Shop By Categories</h3>
       <div className="flex flex-wrap mt-10 gap-5 justify-center items-center w-full">
         {ProductCategory.map((item: CategoryType) => (
-          <div key={item.name} className="h-60 border rounded-lg w-40">
+          <Link href={`/category/${item.name.toLowerCase().replace(/\s+/g, "-")}`} key={item.name}>
+          <div className="h-60 border rounded-lg w-40">
             <Image src={item.image} width={200} height={200} alt={item.name} className="w-full h-[85%] rounded-t-lg object-cover" />
             <h2 className="flex justify-center items-center h-[15%] font-bold">{item.name}</h2>
           </div>
+          </Link>
         ))}
       </div>
 

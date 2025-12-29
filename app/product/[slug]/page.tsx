@@ -6,21 +6,8 @@ import { FiHeart, FiMinus, FiPlus } from "react-icons/fi";
 import { FaStar, FaMapMarkerAlt, FaPhoneAlt, FaShippingFast, FaShieldAlt, FaCheckCircle, FaBoxOpen } from "react-icons/fa";
 import { IoMdCall } from "react-icons/io";
 import ProductCard from "@/components/ProductCard";
-import ProductActions from "@/components/ProductActions";
-interface Product {
-  id: number;
-  name: string;
-  slug: string;
-  orignal_price: number;
-  discount_price: number;
-  image: string;
-  category: string;
-  brand: string;
-  ingredients: string;
-  discription: string;
-  is_sold_out?: boolean;
-  size?: string;
-}
+import ProductActions from "@/features/ProductActions";
+import { Product } from "@/types/product";
 
 
 const MOCK_DATA = {

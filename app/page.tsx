@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { ProductCategory, CategoryType } from "@/utils/ProductCategory";
 import ProductCard from "@/components/ProductCard";
-import { useProducts } from "@/features/products/useProducts";
+import { useProducts } from "@/hooks/useProducts";
 import { Fullscreen } from "lucide-react";
 import Link from "next/link";
 

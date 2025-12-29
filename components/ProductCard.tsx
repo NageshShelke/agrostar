@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Product } from '@/types/product';
 
 
-const ProductCard = ({ product }: { product: any }) => {
+const ProductCard = ({ product }: { product: Product }) => {
      const slug = product.name.toLowerCase().replace(/\s+/g, "-"); 
     
     const isSoldOut = product.is_sold_out || false; 

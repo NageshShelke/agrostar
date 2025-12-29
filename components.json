@@ -17,9 +17,5 @@
     "ui": "@/components/ui",
     "lib": "@/lib",
     "hooks": "@/hooks"
-  },
-  	"registries": {
-	  "@tailark": "https://tailark.com/r/{name}.json",
-    "@efferd": "https://efferd.com/r/{name}.json"
-	}
+  }  
 }

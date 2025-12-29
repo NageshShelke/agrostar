@@ -3,7 +3,7 @@ import React from "react";
 import { CategoryType, ProductCategory } from "@/utils/ProductCategory";
 
 const navitem = [
-  { name: "All Category", href: "/", dropdown: ["Cat 1", "Cat 2", "Cat 3"] },
+  { name: "All Category", href: "/", dropdown: true },
   { name: "Home", href: "/" },
   { name: "Shop by Brand", href: "/brand" },
   { name: "About", href: "/about" },
@@ -17,11 +17,8 @@ const NavHeader = () => {
         <ul className="flex gap-12 relative">
           {navitem.map((item) =>
             item.dropdown ? (
-              /* Dropdown Wrapper */
               <li key={item.name} className="group relative cursor-pointer">
-                <span className="hover:text-blue-600">{item.name}</span>
-
-              
+                <span className="hover:text-blue-600">{item.name}</span>              
                 <div
                   className=" absolute left-0 top-full  hidden group-hover:block bg-white shadow-lg rounded-md py-2 w-40 z-50"
                 >

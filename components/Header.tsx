@@ -5,10 +5,12 @@ import { useState } from "react";
 import { Menu, X, Search, LogIn } from "lucide-react";
 import logo from '@/public/header_logo.png';
 import { IoCartOutline } from "react-icons/io5";
+import { useSelector } from "react-redux";
 
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const cartitem = useSelector((store: any) => store.cart.items);
 
   return (
     <header className="w-full shadow bg-white">
@@ -48,7 +50,7 @@ export default function Header() {
         <div className="hidden lg:flex items-center gap-3 ">
           <div className="relative p-2">
             <IoCartOutline className="text-2xl" />
-            <p className="absolute top-0 right-0 text-[10px] text-white bg-green-800 rounded-full px-1">1</p>
+            <p className="absolute top-0 right-0 text-[10px] text-white bg-green-800 rounded-full px-1">{cartitem.length}</p>
           </div>
 
           <select id="language-select" className="hover:cursor-pointer border rounded px-2 py-1 text-xs bg-transparent">
@@ -67,7 +69,7 @@ export default function Header() {
         <div className="lg:hidden flex gap-2">
           <div className="relative p-2">
             <IoCartOutline className="text-2xl" />
-            <p className="absolute top-0 right-0 text-[10px] text-white bg-green-800 rounded-full px-1">1</p>
+            <p className="absolute top-0 right-0 text-[10px] text-white bg-green-800 rounded-full px-1">{cartitem.length}</p>
           </div>
 
           {/* Mobile Menu Button */}

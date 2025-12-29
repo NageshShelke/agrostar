@@ -1,17 +1,24 @@
 // components/ProductActions.tsx
 "use client";
 
+import { log } from "console";
 import { useState } from "react";
 import { FiMinus, FiPlus } from "react-icons/fi";
+import { useDispatch } from "react-redux";
+import { toast } from "sonner";
 
 export default function ProductActions({ packSizes, product }: { packSizes: string[]; product: any }) {
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState(packSizes[0]);
-
+  const dispatch = useDispatch();
   const handleAddToCart = () => {
-    // Logic to update your global cart state/context/API
-    console.log(`Added ${quantity} of ${selectedSize} to cart.`);
-    alert(`Added ${quantity} of ${selectedSize} to cart.`);
+    dispatch({ type: 'cart/addToCart', payload: { ...product, selectedSize, quantity } });
+   
+    toast.success(`${product.name} added to cart!`, {
+      description: "Check your cart to proceed to checkout.",
+      duration: 3000,
+    });
+    
   };
 
   return (
@@ -63,7 +70,7 @@ export default function ProductActions({ packSizes, product }: { packSizes: stri
 
       {/* Action Buttons */}
       <div className="flex gap-4 mt-4">
-        <button className="flex-1 bg-[#548235] hover:bg-green-800 text-white font-bold py-3 rounded" onClick={handleAddToCart}>
+        <button className="flex-1 bg-[#548235] hover:bg-green-800 text-white font-bold py-3 rounded cursor-pointer" onClick={handleAddToCart}>
           Add To Cart
         </button>
         <button className="flex-1 bg-[#FFB800] hover:bg-yellow-600 text-white font-bold py-3 rounded">

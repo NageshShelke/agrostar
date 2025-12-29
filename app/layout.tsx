@@ -5,7 +5,8 @@ import Header from "@/components/Header";
 import NavHeader from "@/components/NavHeader"
 import {Footer} from "@/components/footer";
 import { store } from "@/Store/store";
-import { Provider } from "react-redux";
+import { ReduxProvider } from "./Provider";
+import { Toaster } from "@/components/ui/sonner"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,12 +33,13 @@ export default function RootLayout({
       <body
         className= {`${geistSans.variable} ${geistMono.variable} antialiased`} 
       >
-        <Provider store={store}>
+        <ReduxProvider>
         <Header />
         <NavHeader />
         <main className="mx-20 mb-10">{children}</main>   
-        <Footer/>
-        </Provider>
+        <Toaster position="top-center" richColors/>
+        <Footer/> 
+        </ReduxProvider>      
       </body>
     </html>
   );

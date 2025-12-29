@@ -6,6 +6,7 @@ import { FiHeart, FiMinus, FiPlus } from "react-icons/fi";
 import { FaStar, FaMapMarkerAlt, FaPhoneAlt, FaShippingFast, FaShieldAlt, FaCheckCircle, FaBoxOpen } from "react-icons/fa";
 import { IoMdCall } from "react-icons/io";
 import ProductCard from "@/components/ProductCard";
+import ProductActions from "@/components/ProductActions";
 interface Product {
   id: number;
   name: string;
@@ -125,53 +126,20 @@ export default async function ProductPage({
             </div>
 
             {/* Pack Size Selector */}
-            <div className="mt-2">
-              <h3 className="font-semibold text-gray-900 mb-1">Pack Size</h3>
-              <div className="flex flex-wrap gap-3">
-                {MOCK_DATA.packSizes.map((size, index) => (
-                  <button
-                    key={size}
-                    // Styling the first one as active based on screenshot
-                    className={`px-6 py-2 rounded border font-medium transition-colors ${index === 0
-                      ? "bg-[#E4B34A] text-white border-[#E4B34A]"
-                      : "bg-white text-gray-700 border-gray-300 hover:border-gray-400"
-                      }`}
-                  >
-                    {size}
-                  </button>
-                ))}
-              </div>
-            </div>
+           
 
             {/* QuantitySelector (Static UI for server component) */}
-            <div className="mt-2 flex items-center gap-4">
-              <h3 className="font-semibold text-gray-900">Quantity:</h3>
-              <div className="flex items-center border border-gray-300 rounded">
-                <button className="p-2 text-gray-500 hover:bg-gray-100">
-                  <FiMinus />
-                </button>
-                {/* Input is readOnly because this is a server component */}
-                <input
-                  type="text"
-                  value="1"
-                  readOnly
-                  className="w-12 text-center border-x border-gray-300 py-1 focus:outline-none"
-                />
-                <button className="p-2 text-gray-500 hover:bg-gray-100">
-                  <FiPlus />
-                </button>
-              </div>
-            </div>
+            <ProductActions packSizes={MOCK_DATA.packSizes} product={product} />
 
             {/* Action Buttons */}
-            <div className="flex gap-4 mt-4">
+            {/* <div className="flex gap-4 mt-4">
               <button className="flex-1 bg-[#548235] hover:bg-green-800 text-white font-bold py-3 px-6 rounded transition-colors uppercase text-sm tracking-wider">
                 Add To Cart
               </button>
               <button className="flex-1 bg-[#FFB800] hover:bg-yellow-600 text-white font-bold py-3 px-6 rounded transition-colors uppercase text-sm tracking-wider">
                 Buy Now
               </button>
-            </div>
+            </div> */}
 
             {/* --- TRUST BADGES SECTION --- */}
             {/* REPLACE THE REACT ICONS BELOW WITH YOUR ACTUAL PNG IMAGES using Next/Image */}

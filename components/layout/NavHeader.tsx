@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import { CategoryType, ProductCategory } from "@/utils/ProductCategory";
 
 const navitem = [
   { name: "All Category", href: "/", dropdown: ["Cat 1", "Cat 2", "Cat 3"] },
@@ -20,17 +21,17 @@ const NavHeader = () => {
               <li key={item.name} className="group relative cursor-pointer">
                 <span className="hover:text-blue-600">{item.name}</span>
 
-                {/* Dropdown */}
+              
                 <div
                   className=" absolute left-0 top-full  hidden group-hover:block bg-white shadow-lg rounded-md py-2 w-40 z-50"
                 >
-                  {item.dropdown.map((opt) => (
+                  {ProductCategory.map((cat) => (
                     <Link
-                      key={opt}
-                      href="#"
+                      key={cat.name}
+                      href={`/category/${cat.name.toLowerCase().replace(/\s+/g, "-")}`}
                       className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
                     >
-                      {opt}
+                      {cat.name}
                     </Link>
                   ))}
                 </div>

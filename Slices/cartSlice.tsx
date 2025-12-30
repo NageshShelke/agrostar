@@ -3,36 +3,40 @@ import { Product } from '@/types/product';
 
 interface CartState {
   items: Product[];
-  totalQuantity: number;
+  quantity: number; // This represents total items in cart
 }
 
 const initialState: CartState = {
   items: [],
-  totalQuantity: 0,
+  quantity: 0,
 };
 
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addToCart: (state, action) => {
+    addToCart: (state, action: PayloadAction<Product & { quantity: number }>) => {
       const newItem = action.payload;
       const existingItem = state.items.find((item) => item.id === newItem.id);
 
       if (!existingItem) {
-        state.items.push({ ...newItem, quantity: 1 });
+        // Add new item with the quantity selected by the user
+        state.items.push({ ...newItem });
       } else {
-        existingItem.quantity = (existingItem.quantity || 0) + 1;
+        // Update existing item quantity by adding the new amount
+        existingItem.quantity = (existingItem.quantity || 0) + newItem.quantity;
       }
-      state.totalQuantity++;
+      
+      // Update the total global quantity count
+      state.quantity += newItem.quantity;
     },
     
-    removeFromCart: (state, action) => {
+    removeFromCart: (state, action: PayloadAction<number>) => {
       const id = action.payload;
       const existingItem = state.items.find((item) => item.id === id);
 
       if (existingItem) {
-        state.totalQuantity -= existingItem.quantity || 0;
+        state.quantity -= existingItem.quantity || 0;
         state.items = state.items.filter((item) => item.id !== id);
       }
     },

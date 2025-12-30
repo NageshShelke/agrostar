@@ -4,20 +4,7 @@ import { ProductCategory, CategoryType } from "@/utils/ProductCategory";
 import { getProductsByCategory } from "@/utils/api";  // create this
 import Link from "next/link"
 import { FaHome } from "react-icons/fa";
-interface Product {
-  id: number;
-  name: string;
-  slug: string;
-  orignal_price: number;
-  discount_price: number;
-  image: string;
-  category: string;
-  brand: string;
-  ingredients: string;
-  discription: string;
-  is_sold_out?: boolean;
-  size?: string;
-}
+import { Product } from "@/types/product";
 
 export default async function CategoryPage({
   params,

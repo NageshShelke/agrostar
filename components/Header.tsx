@@ -6,6 +6,7 @@ import { Menu, X, Search, LogIn } from "lucide-react";
 import logo from '@/public/header_logo.png';
 import { IoCartOutline } from "react-icons/io5";
 import { useSelector } from "react-redux";
+import Link from "next/link";
 
 
 export default function Header() {
@@ -49,7 +50,7 @@ export default function Header() {
         {/* Language + Login - Standardized heights */}
         <div className="hidden lg:flex items-center gap-3 ">
           <div className="relative p-2">
-            <IoCartOutline className="text-2xl" />
+            <Link href="/cart"><IoCartOutline className="text-2xl cursor-pointer" /></Link>
             <p className="absolute top-0 right-0 text-[10px] text-white bg-green-800 rounded-full px-1">{cartitem.length}</p>
           </div>
 
@@ -68,7 +69,7 @@ export default function Header() {
 
         <div className="lg:hidden flex gap-2">
           <div className="relative p-2">
-            <IoCartOutline className="text-2xl" />
+            <Link href="/cart"><IoCartOutline className="text-2xl cursor-pointer" /></Link>
             <p className="absolute top-0 right-0 text-[10px] text-white bg-green-800 rounded-full px-1">{cartitem.length}</p>
           </div>
 

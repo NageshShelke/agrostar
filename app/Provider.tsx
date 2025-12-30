@@ -1,4 +1,4 @@
-'use client'; // This directive is the key!
+'use client';
 
 import { Provider } from "react-redux";
 import { store } from "@/Store/store";

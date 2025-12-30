@@ -112,24 +112,8 @@ export default async function ProductPage({
               </p>
             </div>
 
-            {/* Pack Size Selector */}
-           
-
-            {/* QuantitySelector (Static UI for server component) */}
             <ProductActions packSizes={MOCK_DATA.packSizes} product={product} />
 
-            {/* Action Buttons */}
-            {/* <div className="flex gap-4 mt-4">
-              <button className="flex-1 bg-[#548235] hover:bg-green-800 text-white font-bold py-3 px-6 rounded transition-colors uppercase text-sm tracking-wider">
-                Add To Cart
-              </button>
-              <button className="flex-1 bg-[#FFB800] hover:bg-yellow-600 text-white font-bold py-3 px-6 rounded transition-colors uppercase text-sm tracking-wider">
-                Buy Now
-              </button>
-            </div> */}
-
-            {/* --- TRUST BADGES SECTION --- */}
-            {/* REPLACE THE REACT ICONS BELOW WITH YOUR ACTUAL PNG IMAGES using Next/Image */}
             <div className="grid grid-cols-4 gap-4 mt-6 pt-6 border-t border-gray-200 text-center">
               <div className="flex flex-col items-center gap-2">
                 {/* REPLACE WITH YOUR "Home Delivery" PNG */}
